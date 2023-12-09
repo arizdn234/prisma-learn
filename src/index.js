@@ -1,11 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-import Express, { json } from "express";
+const { PrismaClient } = require('@prisma/client')
+const express = require('express')
 
 const prisma = new PrismaClient()
 const port = 3000
-const app = Express()
+const app = express()
 
-app.use(Express.json())
+app.use(express.json())
+app.use(express.urlencoded())
 
 app.get('/artists', async (req, res) => {
     const artists = await prisma.artist.findMany()
